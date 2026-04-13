@@ -14,6 +14,15 @@ export type SocialLink = {
   icon: "github" | "twitter" | "zenn" | "linkedin";
 };
 
+export type Engagement = {
+  id: string;
+  title: string;
+  period: string;
+  role: string;
+  description: string;
+  tags: string[];
+};
+
 export type Profile = {
   name: string;
   nameEn: string;
