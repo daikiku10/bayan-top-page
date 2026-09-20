@@ -14,6 +14,26 @@ export type SocialLink = {
   icon: "github" | "twitter" | "zenn" | "linkedin";
 };
 
+export type ArchitectureNode = {
+  id: string;
+  label: string;
+  detail?: string;
+  /** 0-indexed column (left to right) in the diagram grid. */
+  column: number;
+  /** 0-indexed row within the column; defaults to 0. */
+  row?: number;
+};
+
+export type ArchitectureEdge = {
+  from: string;
+  to: string;
+};
+
+export type Architecture = {
+  nodes: ArchitectureNode[];
+  edges: ArchitectureEdge[];
+};
+
 export type Engagement = {
   id: string;
   title: string;
@@ -21,6 +41,7 @@ export type Engagement = {
   role: string;
   description: string;
   tags: string[];
+  architecture?: Architecture;
 };
 
 export type Profile = {
