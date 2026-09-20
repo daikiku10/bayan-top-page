@@ -3,23 +3,25 @@ import type { Engagement } from "@/types";
 export const engagements: Engagement[] = [
   {
     id: "1",
-    title: "ECサイトリニューアル",
-    period: "2023年4月 〜 2024年3月",
-    role: "バックエンドエンジニア",
+    title: "動画視聴プラットフォームの解析機能開発と改修",
+    period: "2021年8月 〜 2023年12月",
+    role: "フロントエンドエンジニア",
     description:
-      "既存ECサイトのAPI設計・実装を担当。レガシーなREST APIをリファクタリングし、パフォーマンス改善と保守性の向上を実現した。",
-    tags: ["TypeScript", "NestJS", "PostgreSQL", "Docker"],
+      "動画視聴プラットフォームにおける視聴データ解析機能の開発・改修にフロントエンドエンジニアとして参画。React・TypeScriptによる管理画面/解析ダッシュボードの実装を担当し、PHP・Go（Laravel・Echo）で構築されたバックエンドAPIと連携した機能提供を行った。",
+    tags: ["TypeScript", "React", "PHP", "Go", "Laravel", "Echo"],
     architecture: {
       nodes: [
-        { id: "client", label: "ブラウザ", column: 0 },
-        { id: "api", label: "NestJS API", detail: "REST", column: 1 },
-        { id: "db", label: "PostgreSQL", column: 2, row: 0 },
-        { id: "cache", label: "Redis", detail: "Cache", column: 2, row: 1 },
+        { id: "client", label: "React 解析ダッシュボード", column: 0 },
+        { id: "api-php", label: "Laravel API", column: 1, row: 0 },
+        { id: "api-go", label: "Echo API", column: 1, row: 1 },
+        { id: "db", label: "MySQL", column: 2, row: 0 },
+        { id: "analytics", label: "解析データストア", detail: "視聴ログ集計", column: 2, row: 1 },
       ],
       edges: [
-        { from: "client", to: "api" },
-        { from: "api", to: "db" },
-        { from: "api", to: "cache" },
+        { from: "client", to: "api-php" },
+        { from: "client", to: "api-go" },
+        { from: "api-php", to: "db" },
+        { from: "api-go", to: "analytics" },
       ],
     },
   },
