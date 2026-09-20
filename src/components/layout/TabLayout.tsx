@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useSyncExternalStore } from "react";
 import About from "@/components/sections/About";
 import Engagements from "@/components/sections/Engagements";
 import Works from "@/components/sections/Works";
@@ -13,9 +13,47 @@ const tabs = [
 
 type TabLabel = (typeof tabs)[number]["label"];
 
-export default function TabLayout() {
-  const [active, setActive] = useState<TabLabel>("自己紹介");
+const DEFAULT_TAB: TabLabel = "自己紹介";
+const ACTIVE_TAB_STORAGE_KEY = "activeTab";
+const listeners = new Set<() => void>();
 
+function isTabLabel(value: string | null): value is TabLabel {
+  return tabs.some((t) => t.label === value);
+}
+
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+  return () => listeners.delete(listener);
+}
+
+function getSnapshot(): TabLabel {
+  try {
+    const saved = window.sessionStorage.getItem(ACTIVE_TAB_STORAGE_KEY);
+    return isTabLabel(saved) ? saved : DEFAULT_TAB;
+  } catch {
+    return DEFAULT_TAB;
+  }
+}
+
+function getServerSnapshot(): TabLabel {
+  return DEFAULT_TAB;
+}
+
+function selectTab(label: TabLabel) {
+  try {
+    window.sessionStorage.setItem(ACTIVE_TAB_STORAGE_KEY, label);
+  } catch {
+    // sessionStorage may be unavailable (e.g. private browsing); ignore.
+  }
+  listeners.forEach((listener) => listener());
+}
+
+export default function TabLayout() {
+  const active = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
   const current = tabs.find((t) => t.label === active);
 
   return (
@@ -25,7 +63,7 @@ export default function TabLayout() {
           {tabs.map((tab) => (
             <button
               key={tab.label}
-              onClick={() => setActive(tab.label)}
+              onClick={() => selectTab(tab.label)}
               className={`py-4 text-sm font-medium transition-colors duration-200 border-b-2 -mb-px ${
                 active === tab.label
                   ? "border-stone-900 text-stone-900"

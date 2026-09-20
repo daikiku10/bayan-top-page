@@ -14,6 +14,11 @@ export type SocialLink = {
   icon: "github" | "twitter" | "zenn" | "linkedin";
 };
 
+export type ArchitectureLayer = {
+  title: string;
+  items: string[];
+};
+
 export type Engagement = {
   id: string;
   title: string;
@@ -21,6 +26,7 @@ export type Engagement = {
   role: string;
   description: string;
   tags: string[];
+  architecture?: ArchitectureLayer[];
 };
 
 export type Profile = {

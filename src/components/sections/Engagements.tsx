@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { engagements } from "@/data/engagements";
 import type { Engagement } from "@/types";
 
 function EngagementCard({ engagement }: { engagement: Engagement }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-orange-200 bg-white p-6">
+    <Link
+      href={`/engagements/${engagement.id}`}
+      className="flex flex-col rounded-2xl border border-orange-200 bg-white p-6 transition-colors hover:border-stone-400"
+    >
       <h3 className="mb-3 text-lg font-semibold text-stone-900">
         {engagement.title}
       </h3>
@@ -24,7 +28,7 @@ function EngagementCard({ engagement }: { engagement: Engagement }) {
           </span>
         ))}
       </div>
-    </div>
+    </Link>
   );
 }
 
