@@ -86,7 +86,10 @@ export default async function EngagementDetailPage({
             <h2 className="mb-4 text-lg font-semibold text-stone-900">
               アーキテクチャ構成
             </h2>
-            <ArchitectureDiagram layers={engagement.architecture} />
+            <ArchitectureDiagram
+              nodes={engagement.architecture.nodes}
+              edges={engagement.architecture.edges}
+            />
           </section>
         )}
       </div>
