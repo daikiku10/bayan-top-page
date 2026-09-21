@@ -90,6 +90,50 @@ export default async function EngagementDetailPage({
           ))}
         </div>
 
+        {engagement.responsibilities && (
+          <section className="mb-10">
+            <h2 className="mb-4 text-lg font-semibold text-stone-900">
+              担当業務
+            </h2>
+            <div className="flex flex-col gap-5">
+              {engagement.responsibilities.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-xs font-medium text-stone-400">
+                    {group.label}
+                  </p>
+                  <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {engagement.challenges && (
+          <section className="mb-10">
+            <h2 className="mb-4 text-lg font-semibold text-stone-900">
+              工夫・苦労した点
+            </h2>
+            <div className="flex flex-col gap-5">
+              {engagement.challenges.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-xs font-medium text-stone-400">
+                    {group.label}
+                  </p>
+                  <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {engagement.architecture && (
           <section>
             <h2 className="mb-4 text-lg font-semibold text-stone-900">

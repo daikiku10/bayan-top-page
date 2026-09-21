@@ -46,6 +46,8 @@ export type Engagement = {
   role: string;
   description: string;
   tags: TagGroup[];
+  responsibilities?: TagGroup[];
+  challenges?: TagGroup[];
   architecture?: Architecture;
 };
 
