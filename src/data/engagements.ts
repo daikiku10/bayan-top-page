@@ -29,8 +29,8 @@ export const engagements: Engagement[] = [
       {
         label: "",
         items: [
-          "旧システムからのリプレイスにあたり、Public側にBFF（Backend For Frontend）のLambda、Private側に機能単位のマイクロサービスLambdaを配置し、Public/Private2段のAPI Gatewayで役割分担する構成を設計",
-          "VPC内リソース（Private API Gateway・Lambda・Aurora）と外部連携（Cognito・S3・SES）の境界を意識した設計・実装",
+          "学生側フロントエンドの仕様は固定のまま、BFFとの繋ぎ込みを実装する必要があり、学生側が受け取るデータを一つひとつ確認しながら必要なもの・不要なものを見極めるのに苦労した",
+          "フロントエンド・バックエンド双方を理解している人材が求められたが、両方対応できるメンバーが数人しかいなかったため、自身が担当した",
         ],
       },
     ],
