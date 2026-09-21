@@ -61,10 +61,7 @@ export default async function EngagementDetailPage({
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-stone-900">
           {engagement.title}
         </h1>
-        <div className="mb-8 flex flex-col gap-1">
-          <p className="text-sm text-stone-500">{engagement.period}</p>
-          <p className="text-sm text-stone-500">{engagement.role}</p>
-        </div>
+        <p className="mb-8 text-sm text-stone-500">{engagement.period}</p>
 
         <section className="mb-8">
           <h2 className="mb-3 text-lg font-semibold text-stone-900">

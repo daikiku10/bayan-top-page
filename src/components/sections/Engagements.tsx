@@ -11,10 +11,7 @@ function EngagementCard({ engagement }: { engagement: Engagement }) {
       <h3 className="mb-3 text-lg font-semibold text-stone-900">
         {engagement.title}
       </h3>
-      <div className="mb-4 flex flex-col gap-1">
-        <p className="text-sm text-stone-500">{engagement.period}</p>
-        <p className="text-sm text-stone-500">{engagement.role}</p>
-      </div>
+      <p className="mb-4 text-sm text-stone-500">{engagement.period}</p>
       <p className="flex-1 text-sm leading-7 text-stone-600">
         {engagement.description}
       </p>
