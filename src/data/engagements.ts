@@ -48,6 +48,7 @@ export const engagements: Engagement[] = [
       },
     ],
     architecture: {
+      container: "GCP",
       nodes: [
         { id: "client", label: "React フロントエンド", column: 0 },
         { id: "api-php", label: "Laravel API", detail: "解析機能", column: 1, row: 0 },

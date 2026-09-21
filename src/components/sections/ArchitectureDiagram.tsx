@@ -8,9 +8,11 @@ type Rect = { x: number; y: number; width: number; height: number };
 export default function ArchitectureDiagram({
   nodes,
   edges,
+  container,
 }: {
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
+  container?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef(new Map<string, HTMLDivElement>());
@@ -18,11 +20,11 @@ export default function ArchitectureDiagram({
   const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const containerEl = containerRef.current;
+    if (!containerEl) return;
 
     const measure = () => {
-      const containerRect = container.getBoundingClientRect();
+      const containerRect = containerEl.getBoundingClientRect();
       const nextRects: Record<string, Rect> = {};
       nodeRefs.current.forEach((el, id) => {
         const rect = el.getBoundingClientRect();
@@ -35,13 +37,13 @@ export default function ArchitectureDiagram({
       });
       setRects(nextRects);
       setCanvasSize({
-        width: container.scrollWidth,
-        height: container.scrollHeight,
+        width: containerEl.scrollWidth,
+        height: containerEl.scrollHeight,
       });
     };
 
     const observer = new ResizeObserver(measure);
-    observer.observe(container);
+    observer.observe(containerEl);
     nodeRefs.current.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
@@ -51,7 +53,7 @@ export default function ArchitectureDiagram({
   const rowCount = Math.max(...nodes.map((n) => n.row ?? 0)) + 1;
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
 
-  return (
+  const diagram = (
     <div ref={containerRef} className="relative">
       <svg
         className="pointer-events-none absolute left-0 top-0"
@@ -134,6 +136,17 @@ export default function ArchitectureDiagram({
           </div>
         ))}
       </div>
+    </div>
+  );
+
+  if (!container) return diagram;
+
+  return (
+    <div className="relative rounded-2xl border border-dashed border-stone-300 p-6 pt-8">
+      <span className="absolute -top-3 left-4 rounded-full bg-[var(--background)] px-2.5 py-0.5 text-xs font-medium text-stone-500">
+        {container}
+      </span>
+      {diagram}
     </div>
   );
 }

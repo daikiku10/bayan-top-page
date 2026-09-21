@@ -30,6 +30,8 @@ export type ArchitectureEdge = {
 };
 
 export type Architecture = {
+  /** Label for the frame surrounding the whole diagram (e.g. hosting environment). */
+  container?: string;
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
 };
