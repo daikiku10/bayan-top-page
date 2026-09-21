@@ -7,7 +7,7 @@ export const engagements: Engagement[] = [
     period: "2024年1月 〜 2025年2月",
     role: "フルスタックエンジニア",
     description:
-      "理系学生向け就職支援サイトを、企業側・学生側・社内管理側の3つのシステムを維持しながらリプレイスするプロジェクト。スクラム開発（2週間スプリント）で進行し、フロントエンドはAmplify上でホスティングするNext.js（App Router / Pages Router併用）、バックエンドはAPI GatewayとGin（Go）で実装しマイクロサービス化されたLambdaで構成し、認証はCognito、画像・添付ファイルはS3、メール送信はSESを利用するサーバーレスアーキテクチャを新規構築した。",
+      "理系学生向け就職支援サイトを、企業側・学生側・社内管理側の3つのシステムを維持しながらリプレイスするプロジェクト。スクラム開発（2週間スプリント）で進行した。",
     tags: [
       { label: "フロントエンド", items: ["TypeScript", "Next.js", "React"] },
       { label: "バックエンド", items: ["Go", "Gin"] },
