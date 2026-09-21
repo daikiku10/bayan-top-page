@@ -100,18 +100,9 @@ export const engagements: Engagement[] = [
       "理系学生向け就職支援サイトのフルリプレイスプロジェクト。フロントエンドはAmplify上でホスティングするNext.js（App Router / Pages Router併用）、バックエンドはAPI GatewayとGin（Go）で実装しマイクロサービス化されたLambdaで構成し、認証はCognito、画像・添付ファイルはS3、メール送信はSESを利用するサーバーレスアーキテクチャを新規構築した。",
     tags: [
       { label: "フロントエンド", items: ["TypeScript", "Next.js", "React"] },
-      { label: "バックエンド", items: ["Go", "Gin", "AWS Lambda", "Amazon API Gateway"] },
+      { label: "バックエンド", items: ["Go", "Gin"] },
       { label: "データベース", items: ["Amazon Aurora (MySQL)"] },
-      {
-        label: "インフラ",
-        items: [
-          "AWS Amplify",
-          "Amazon Cognito",
-          "Amazon S3",
-          "Amazon SES",
-          "AWS VPC",
-        ],
-      },
+      { label: "インフラ", items: ["AWS"] },
     ],
     responsibilities: [
       {
