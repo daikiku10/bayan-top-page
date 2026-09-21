@@ -11,6 +11,8 @@ export const engagements: Engagement[] = [
     tags: [
       { label: "フロントエンド", items: ["TypeScript", "React"] },
       { label: "バックエンド", items: ["PHP", "Laravel", "Go", "Echo"] },
+      { label: "データベース", items: ["MySQL", "Redis"] },
+      { label: "インフラ", items: ["GCP", "ArgoCD"] },
     ],
     responsibilities: [
       {
@@ -47,17 +49,19 @@ export const engagements: Engagement[] = [
     ],
     architecture: {
       nodes: [
-        { id: "client", label: "React 解析ダッシュボード", column: 0 },
-        { id: "api-php", label: "Laravel API", column: 1, row: 0 },
-        { id: "api-go", label: "Echo API", column: 1, row: 1 },
+        { id: "client", label: "React フロントエンド", column: 0 },
+        { id: "api-php", label: "Laravel API", detail: "解析機能", column: 1, row: 0 },
+        { id: "api-go", label: "Echo API", detail: "その他機能（コンテンツ表示・CSV出力等）", column: 1, row: 1 },
         { id: "db", label: "MySQL", column: 2, row: 0 },
-        { id: "analytics", label: "解析データストア", detail: "視聴ログ集計", column: 2, row: 1 },
+        { id: "cache", label: "Redis", detail: "セッション管理", column: 2, row: 1 },
       ],
       edges: [
         { from: "client", to: "api-php" },
         { from: "client", to: "api-go" },
         { from: "api-php", to: "db" },
-        { from: "api-go", to: "analytics" },
+        { from: "api-go", to: "db" },
+        { from: "api-php", to: "cache" },
+        { from: "api-go", to: "cache" },
       ],
     },
   },
