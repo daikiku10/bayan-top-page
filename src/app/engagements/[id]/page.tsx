@@ -66,9 +66,14 @@ export default async function EngagementDetailPage({
           <p className="text-sm text-stone-500">{engagement.role}</p>
         </div>
 
-        <p className="mb-8 text-sm leading-7 text-stone-600">
-          {engagement.description}
-        </p>
+        <section className="mb-8">
+          <h2 className="mb-3 text-lg font-semibold text-stone-900">
+            プロジェクト概要
+          </h2>
+          <p className="text-sm leading-7 text-stone-600">
+            {engagement.description}
+          </p>
+        </section>
 
         <div className="mb-10 flex flex-col gap-2">
           {engagement.tags.map((group) => (
