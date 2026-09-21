@@ -2,6 +2,68 @@ import type { Engagement } from "@/types";
 
 export const engagements: Engagement[] = [
   {
+    id: "3",
+    title: "理系学生向け就職サイトのリプレイス",
+    period: "2024年1月 〜 2025年2月",
+    role: "フルスタックエンジニア",
+    description:
+      "理系学生向け就職支援サイトを、企業側・学生側・社内管理側の3つのシステムを維持しながらリプレイスするプロジェクト。スクラム開発（2週間スプリント）で進行した。",
+    tags: [
+      { label: "フロントエンド", items: ["TypeScript", "Next.js", "React"] },
+      { label: "バックエンド", items: ["Go", "Gin"] },
+      { label: "データベース", items: ["Amazon Aurora (MySQL)"] },
+      { label: "インフラ", items: ["AWS"] },
+    ],
+    responsibilities: [
+      {
+        label: "",
+        items: [
+          "メインはバックエンドの実装",
+          "スプリント内で次スプリントに行うフロントエンド側のタスクの作成・見積もりを担当",
+          "スプリントの状況に応じてフロントエンドの実装も担当",
+          "バックエンド・フロントエンドのレビュー対応",
+        ],
+      },
+    ],
+    challenges: [
+      {
+        label: "",
+        items: [
+          "学生側フロントエンドの仕様は固定のまま、BFFとの繋ぎ込みを実装する必要があり、学生側が受け取るデータを一つひとつ確認しながら必要なもの・不要なものを見極めるのに苦労した",
+          "フロントエンド・バックエンド双方を理解している人材が求められたが、両方対応できるメンバーが数人しかいなかったため、自身が担当した",
+        ],
+      },
+    ],
+    architecture: {
+      container: "AWS",
+      nodes: [
+        { id: "client", label: "Client", column: 0 },
+        { id: "amplify", label: "Amplify", detail: "Next.js（App Router / Pages Router）", column: 1 },
+        { id: "api-gw-public", label: "API Gateway", detail: "Public", column: 2, row: 0 },
+        { id: "cognito", label: "Cognito", detail: "ユーザープール", column: 2, row: 1 },
+        { id: "s3", label: "S3", detail: "画像・添付ファイル", column: 2, row: 2 },
+        { id: "lambda", label: "Lambda", detail: "BFF (Go, Gin)", column: 3 },
+        { id: "api-gw-private", label: "API Gateway", detail: "Private", column: 4 },
+        { id: "lambda-ms", label: "Lambda", detail: "micro services (Go, Gin)", column: 5 },
+        { id: "rds", label: "Amazon Aurora", detail: "MySQL", column: 6, row: 0 },
+        { id: "ses", label: "SES", detail: "メール送信", column: 6, row: 1 },
+      ],
+      edges: [
+        { from: "client", to: "amplify" },
+        { from: "amplify", to: "api-gw-public" },
+        { from: "amplify", to: "cognito" },
+        { from: "amplify", to: "s3" },
+        { from: "ses", to: "client" },
+        { from: "api-gw-public", to: "lambda" },
+        { from: "lambda", to: "api-gw-private" },
+        { from: "api-gw-private", to: "lambda-ms" },
+        { from: "lambda-ms", to: "rds" },
+        { from: "cognito", to: "lambda-ms" },
+        { from: "lambda-ms", to: "ses" },
+      ],
+    },
+  },
+  {
     id: "1",
     title: "動画視聴プラットフォームの解析機能開発と改修",
     period: "2021年8月 〜 2023年12月",
@@ -63,31 +125,6 @@ export const engagements: Engagement[] = [
         { from: "api-go", to: "db" },
         { from: "api-php", to: "cache" },
         { from: "api-go", to: "cache" },
-      ],
-    },
-  },
-  {
-    id: "2",
-    title: "社内業務システム新規開発",
-    period: "2022年10月 〜 2023年3月",
-    role: "フルスタックエンジニア",
-    description:
-      "営業部門向け社内ツールのフロントエンド・バックエンドを一貫して担当。要件定義から実装・リリースまでを少数精鋭チームで推進した。",
-    tags: [
-      { label: "フロントエンド", items: ["React", "TypeScript"] },
-      { label: "バックエンド", items: ["Node.js", "PostgreSQL"] },
-    ],
-    architecture: {
-      nodes: [
-        { id: "client", label: "React SPA", column: 0 },
-        { id: "backend", label: "Express API", column: 1 },
-        { id: "db", label: "PostgreSQL", column: 2, row: 0 },
-        { id: "notify", label: "Slack Webhook", detail: "通知", column: 2, row: 1 },
-      ],
-      edges: [
-        { from: "client", to: "backend" },
-        { from: "backend", to: "db" },
-        { from: "backend", to: "notify" },
       ],
     },
   },

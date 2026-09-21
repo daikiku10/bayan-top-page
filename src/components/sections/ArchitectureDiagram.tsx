@@ -139,14 +139,14 @@ export default function ArchitectureDiagram({
     </div>
   );
 
-  if (!container) return diagram;
+  if (!container) return <div className="overflow-x-auto">{diagram}</div>;
 
   return (
     <div className="relative rounded-2xl border border-dashed border-stone-300 p-6 pt-8">
       <span className="absolute -top-3 left-4 rounded-full bg-[var(--background)] px-2.5 py-0.5 text-xs font-medium text-stone-500">
         {container}
       </span>
-      {diagram}
+      <div className="overflow-x-auto">{diagram}</div>
     </div>
   );
 }
