@@ -134,7 +134,7 @@ export const engagements: Engagement[] = [
       {
         label: "アーキテクチャ",
         items: [
-          "旧システムからのリプレイスにあたり、機能単位でLambdaをマイクロサービス化し、Public/Private2段のAPI Gatewayで役割分担する構成を設計",
+          "旧システムからのリプレイスにあたり、Public側にBFF（Backend For Frontend）のLambda、Private側に機能単位のマイクロサービスLambdaを配置し、Public/Private2段のAPI Gatewayで役割分担する構成を設計",
           "VPC内リソース（Private API Gateway・Lambda・Aurora）と外部連携（Cognito・S3・SES）の境界を意識した設計・実装",
         ],
       },
@@ -147,7 +147,7 @@ export const engagements: Engagement[] = [
         { id: "api-gw-public", label: "API Gateway", detail: "Public", column: 2, row: 0 },
         { id: "cognito", label: "Cognito", detail: "ユーザープール", column: 2, row: 1 },
         { id: "s3", label: "S3", detail: "画像・添付ファイル", column: 2, row: 2 },
-        { id: "lambda", label: "Lambda", column: 3 },
+        { id: "lambda", label: "Lambda", detail: "BFF", column: 3 },
         { id: "api-gw-private", label: "API Gateway", detail: "Private", column: 4 },
         { id: "lambda-ms", label: "Lambda", detail: "micro services", column: 5 },
         { id: "rds", label: "Amazon Aurora", detail: "MySQL", column: 6, row: 0 },
