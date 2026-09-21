@@ -97,10 +97,10 @@ export const engagements: Engagement[] = [
     period: "2024年1月 〜 2025年2月",
     role: "フルスタックエンジニア",
     description:
-      "理系学生向け就職支援サイトのフルリプレイスプロジェクト。フロントエンドはAmplify上でホスティングするNext.js（App Router）、バックエンドはAPI Gatewayとマイクロサービス化されたLambdaで構成し、認証はCognito、画像・添付ファイルはS3、メール送信はSESを利用するサーバーレスアーキテクチャを新規構築した。",
+      "理系学生向け就職支援サイトのフルリプレイスプロジェクト。フロントエンドはAmplify上でホスティングするNext.js（App Router / Pages Router併用）、バックエンドはAPI GatewayとGin（Go）で実装しマイクロサービス化されたLambdaで構成し、認証はCognito、画像・添付ファイルはS3、メール送信はSESを利用するサーバーレスアーキテクチャを新規構築した。",
     tags: [
       { label: "フロントエンド", items: ["TypeScript", "Next.js", "React"] },
-      { label: "バックエンド", items: ["Go", "AWS Lambda", "Amazon API Gateway"] },
+      { label: "バックエンド", items: ["Go", "Gin", "AWS Lambda", "Amazon API Gateway"] },
       { label: "データベース", items: ["Amazon Aurora (MySQL)"] },
       {
         label: "インフラ",
@@ -117,7 +117,7 @@ export const engagements: Engagement[] = [
       {
         label: "フロントエンド",
         items: [
-          "Next.js（App Router）を用いた画面の新規実装",
+          "Next.js（App Router / Pages Router）を用いた画面の新規実装",
           "Amplifyへのデプロイ環境構築",
         ],
       },
@@ -125,7 +125,7 @@ export const engagements: Engagement[] = [
         label: "バックエンド",
         items: [
           "Public/Private API GatewayとLambdaによるAPI実装",
-          "マイクロサービス単位でのLambda（Go）実装",
+          "マイクロサービス単位でのLambda（Go, Gin）実装",
           "Cognitoと連携したユーザー作成処理、SES経由のメール送信処理の実装",
         ],
       },
@@ -143,13 +143,13 @@ export const engagements: Engagement[] = [
       container: "AWS",
       nodes: [
         { id: "client", label: "Client", column: 0 },
-        { id: "amplify", label: "Amplify", detail: "Next.js App Router", column: 1 },
+        { id: "amplify", label: "Amplify", detail: "Next.js（App Router / Pages Router）", column: 1 },
         { id: "api-gw-public", label: "API Gateway", detail: "Public", column: 2, row: 0 },
         { id: "cognito", label: "Cognito", detail: "ユーザープール", column: 2, row: 1 },
         { id: "s3", label: "S3", detail: "画像・添付ファイル", column: 2, row: 2 },
-        { id: "lambda", label: "Lambda", detail: "BFF", column: 3 },
+        { id: "lambda", label: "Lambda", detail: "BFF (Go, Gin)", column: 3 },
         { id: "api-gw-private", label: "API Gateway", detail: "Private", column: 4 },
-        { id: "lambda-ms", label: "Lambda", detail: "micro services", column: 5 },
+        { id: "lambda-ms", label: "Lambda", detail: "micro services (Go, Gin)", column: 5 },
         { id: "rds", label: "Amazon Aurora", detail: "MySQL", column: 6, row: 0 },
         { id: "ses", label: "SES", detail: "メール送信", column: 6, row: 1 },
       ],
