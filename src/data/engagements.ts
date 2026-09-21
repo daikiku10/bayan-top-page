@@ -16,7 +16,7 @@ export const engagements: Engagement[] = [
     ],
     responsibilities: [
       {
-        label: "担当業務",
+        label: "",
         items: [
           "メインはバックエンドの実装",
           "スプリント内で次スプリントに行うフロントエンド側のタスクの作成・見積もりを担当",
@@ -27,7 +27,7 @@ export const engagements: Engagement[] = [
     ],
     challenges: [
       {
-        label: "アーキテクチャ",
+        label: "",
         items: [
           "旧システムからのリプレイスにあたり、Public側にBFF（Backend For Frontend）のLambda、Private側に機能単位のマイクロサービスLambdaを配置し、Public/Private2段のAPI Gatewayで役割分担する構成を設計",
           "VPC内リソース（Private API Gateway・Lambda・Aurora）と外部連携（Cognito・S3・SES）の境界を意識した設計・実装",

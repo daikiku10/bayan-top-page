@@ -111,9 +111,11 @@ export default async function EngagementDetailPage({
             <div className="flex flex-col gap-5">
               {engagement.responsibilities.map((group) => (
                 <div key={group.label}>
-                  <p className="mb-2 text-xs font-medium text-stone-400">
-                    {group.label}
-                  </p>
+                  {group.label && (
+                    <p className="mb-2 text-xs font-medium text-stone-400">
+                      {group.label}
+                    </p>
+                  )}
                   <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
                     {group.items.map((item) => (
                       <li key={item}>{item}</li>
@@ -133,9 +135,11 @@ export default async function EngagementDetailPage({
             <div className="flex flex-col gap-5">
               {engagement.challenges.map((group) => (
                 <div key={group.label}>
-                  <p className="mb-2 text-xs font-medium text-stone-400">
-                    {group.label}
-                  </p>
+                  {group.label && (
+                    <p className="mb-2 text-xs font-medium text-stone-400">
+                      {group.label}
+                    </p>
+                  )}
                   <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
                     {group.items.map((item) => (
                       <li key={item}>{item}</li>
