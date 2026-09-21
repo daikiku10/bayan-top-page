@@ -67,31 +67,6 @@ export const engagements: Engagement[] = [
     },
   },
   {
-    id: "2",
-    title: "社内業務システム新規開発",
-    period: "2022年10月 〜 2023年3月",
-    role: "フルスタックエンジニア",
-    description:
-      "営業部門向け社内ツールのフロントエンド・バックエンドを一貫して担当。要件定義から実装・リリースまでを少数精鋭チームで推進した。",
-    tags: [
-      { label: "フロントエンド", items: ["React", "TypeScript"] },
-      { label: "バックエンド", items: ["Node.js", "PostgreSQL"] },
-    ],
-    architecture: {
-      nodes: [
-        { id: "client", label: "React SPA", column: 0 },
-        { id: "backend", label: "Express API", column: 1 },
-        { id: "db", label: "PostgreSQL", column: 2, row: 0 },
-        { id: "notify", label: "Slack Webhook", detail: "通知", column: 2, row: 1 },
-      ],
-      edges: [
-        { from: "client", to: "backend" },
-        { from: "backend", to: "db" },
-        { from: "backend", to: "notify" },
-      ],
-    },
-  },
-  {
     id: "3",
     title: "理系学生向け就職サイトのリプレイス",
     period: "2024年1月 〜 2025年2月",
