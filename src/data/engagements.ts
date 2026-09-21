@@ -16,18 +16,12 @@ export const engagements: Engagement[] = [
     ],
     responsibilities: [
       {
-        label: "フロントエンド",
+        label: "担当業務",
         items: [
-          "Next.js（App Router / Pages Router）を用いた画面の新規実装",
-          "Amplifyへのデプロイ環境構築",
-        ],
-      },
-      {
-        label: "バックエンド",
-        items: [
-          "Public/Private API GatewayとLambdaによるAPI実装",
-          "マイクロサービス単位でのLambda（Go, Gin）実装",
-          "Cognitoと連携したユーザー作成処理、SES経由のメール送信処理の実装",
+          "バックエンドの実装をメインで担当",
+          "スプリント内で次スプリントに行うタスクの作成・見積もりを実施（チーム内のフロントエンド側タスクの作成・見積もりも担当）",
+          "スプリントの状況に応じてフロントエンドの実装も担当",
+          "バックエンド・フロントエンド双方のプルリクエストのレビュー対応",
         ],
       },
     ],
