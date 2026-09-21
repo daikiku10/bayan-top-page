@@ -91,4 +91,90 @@ export const engagements: Engagement[] = [
       ],
     },
   },
+  {
+    id: "3",
+    title: "理系学生向け就職サイトのリプレイス",
+    period: "2024年1月 〜 2025年2月",
+    role: "フルスタックエンジニア",
+    description:
+      "理系学生向け就職支援サイトのフルリプレイスプロジェクト。フロントエンドはAmplify上でホスティングするNext.js（App Router）、バックエンドはAPI Gatewayとマイクロサービス化されたLambdaで構成し、認証はCognito、画像・添付ファイルはS3、メール送信はSESを利用するサーバーレスアーキテクチャを新規構築した。",
+    tags: [
+      { label: "フロントエンド", items: ["TypeScript", "Next.js", "React"] },
+      { label: "バックエンド", items: ["Go", "AWS Lambda", "Amazon API Gateway"] },
+      { label: "データベース", items: ["Amazon Aurora (MySQL)"] },
+      {
+        label: "インフラ",
+        items: [
+          "AWS Amplify",
+          "Amazon Cognito",
+          "Amazon S3",
+          "Amazon SES",
+          "AWS VPC",
+        ],
+      },
+    ],
+    responsibilities: [
+      {
+        label: "フロントエンド",
+        items: [
+          "Next.js（App Router）を用いた画面の新規実装",
+          "Amplifyへのデプロイ環境構築",
+        ],
+      },
+      {
+        label: "バックエンド",
+        items: [
+          "Public/Private API GatewayとLambdaによるAPI実装",
+          "マイクロサービス単位でのLambda（Go）実装",
+          "Cognitoと連携したユーザー作成処理、SES経由のメール送信処理の実装",
+        ],
+      },
+    ],
+    challenges: [
+      {
+        label: "アーキテクチャ",
+        items: [
+          "旧システムからのリプレイスにあたり、機能単位でLambdaをマイクロサービス化し、Public/Private2段のAPI Gatewayで役割分担する構成を設計",
+          "VPC内リソース（Private API Gateway・Lambda・Aurora）と外部連携（Cognito・S3・SES）の境界を意識した設計・実装",
+        ],
+      },
+    ],
+    architecture: {
+      container: "AWS",
+      nodes: [
+        { id: "client", label: "Client", column: 0 },
+        { id: "amplify", label: "Amplify", detail: "Next.js App Router", column: 1, row: 0 },
+        { id: "api-gw-public", label: "API Gateway", detail: "Public", column: 1, row: 1 },
+        { id: "cognito", label: "Cognito", detail: "ユーザープール", column: 1, row: 2 },
+        { id: "s3", label: "S3", detail: "画像・添付ファイル", column: 1, row: 3 },
+        { id: "lambda-1", label: "Lambda", column: 2, row: 0 },
+        { id: "lambda-2", label: "Lambda", column: 2, row: 1 },
+        { id: "api-gw-private", label: "API Gateway", detail: "Private", column: 3, row: 0 },
+        { id: "lambda-ms-1", label: "Lambda", detail: "micro service", column: 4, row: 0 },
+        { id: "lambda-ms-2", label: "Lambda", detail: "micro service", column: 4, row: 1 },
+        { id: "lambda-ms-3", label: "Lambda", detail: "micro service", column: 4, row: 2 },
+        { id: "rds", label: "Amazon Aurora", detail: "MySQL", column: 5, row: 0 },
+        { id: "ses", label: "SES", detail: "メール送信", column: 5, row: 1 },
+      ],
+      edges: [
+        { from: "client", to: "amplify" },
+        { from: "client", to: "api-gw-public" },
+        { from: "client", to: "cognito" },
+        { from: "client", to: "s3" },
+        { from: "ses", to: "client" },
+        { from: "api-gw-public", to: "lambda-1" },
+        { from: "api-gw-public", to: "lambda-2" },
+        { from: "lambda-1", to: "api-gw-private" },
+        { from: "lambda-2", to: "api-gw-private" },
+        { from: "api-gw-private", to: "lambda-ms-1" },
+        { from: "api-gw-private", to: "lambda-ms-2" },
+        { from: "api-gw-private", to: "lambda-ms-3" },
+        { from: "lambda-ms-1", to: "rds" },
+        { from: "lambda-ms-2", to: "rds" },
+        { from: "lambda-ms-3", to: "rds" },
+        { from: "cognito", to: "lambda-ms-1" },
+        { from: "lambda-ms-2", to: "ses" },
+      ],
+    },
+  },
 ];
