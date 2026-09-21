@@ -34,13 +34,18 @@ export type Architecture = {
   edges: ArchitectureEdge[];
 };
 
+export type TagGroup = {
+  label: string;
+  items: string[];
+};
+
 export type Engagement = {
   id: string;
   title: string;
   period: string;
   role: string;
   description: string;
-  tags: string[];
+  tags: TagGroup[];
   architecture?: Architecture;
 };
 
