@@ -30,8 +30,15 @@ export type ArchitectureEdge = {
 };
 
 export type Architecture = {
+  /** Label for the frame surrounding the whole diagram (e.g. hosting environment). */
+  container?: string;
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
+};
+
+export type TagGroup = {
+  label: string;
+  items: string[];
 };
 
 export type Engagement = {
@@ -40,7 +47,9 @@ export type Engagement = {
   period: string;
   role: string;
   description: string;
-  tags: string[];
+  tags: TagGroup[];
+  responsibilities?: TagGroup[];
+  challenges?: TagGroup[];
   architecture?: Architecture;
 };
 

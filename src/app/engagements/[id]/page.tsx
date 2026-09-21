@@ -61,37 +61,92 @@ export default async function EngagementDetailPage({
         <h1 className="mb-3 text-3xl font-bold tracking-tight text-stone-900">
           {engagement.title}
         </h1>
-        <div className="mb-8 flex flex-col gap-1">
-          <p className="text-sm text-stone-500">{engagement.period}</p>
-          <p className="text-sm text-stone-500">{engagement.role}</p>
-        </div>
+        <p className="mb-8 text-sm text-stone-500">{engagement.period}</p>
 
-        <p className="mb-8 text-sm leading-7 text-stone-600">
-          {engagement.description}
-        </p>
+        <section className="mb-8">
+          <h2 className="mb-3 text-lg font-semibold text-stone-900">
+            プロジェクト概要
+          </h2>
+          <p className="text-sm leading-7 text-stone-600">
+            {engagement.description}
+          </p>
+        </section>
 
-        <div className="mb-10 flex flex-wrap gap-2">
-          {engagement.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full bg-sky-50 px-2.5 py-0.5 text-xs font-medium text-sky-600"
-            >
-              {tag}
-            </span>
+        <div className="mb-10 flex flex-col gap-2">
+          {engagement.tags.map((group) => (
+            <div key={group.label} className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-medium text-stone-400">
+                {group.label}
+              </span>
+              {group.items.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full bg-sky-50 px-2.5 py-0.5 text-xs font-medium text-sky-600"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           ))}
         </div>
 
         {engagement.architecture && (
-          <section>
+          <section className="mb-10">
             <h2 className="mb-4 text-lg font-semibold text-stone-900">
               アーキテクチャ構成
             </h2>
             <ArchitectureDiagram
               nodes={engagement.architecture.nodes}
               edges={engagement.architecture.edges}
+              container={engagement.architecture.container}
             />
           </section>
         )}
+
+        {engagement.responsibilities && (
+          <section className="mb-10">
+            <h2 className="mb-4 text-lg font-semibold text-stone-900">
+              担当業務
+            </h2>
+            <div className="flex flex-col gap-5">
+              {engagement.responsibilities.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-xs font-medium text-stone-400">
+                    {group.label}
+                  </p>
+                  <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {engagement.challenges && (
+          <section className="mb-10">
+            <h2 className="mb-4 text-lg font-semibold text-stone-900">
+              工夫・苦労した点
+            </h2>
+            <div className="flex flex-col gap-5">
+              {engagement.challenges.map((group) => (
+                <div key={group.label}>
+                  <p className="mb-2 text-xs font-medium text-stone-400">
+                    {group.label}
+                  </p>
+                  <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
+                    {group.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
       </div>
     </main>
   );
