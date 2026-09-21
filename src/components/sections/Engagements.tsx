@@ -12,7 +12,7 @@ function EngagementCard({ engagement }: { engagement: Engagement }) {
         {engagement.title}
       </h3>
       <p className="mb-4 text-sm text-stone-500">{engagement.period}</p>
-      <p className="flex-1 text-sm leading-7 text-stone-600">
+      <p className="line-clamp-4 flex-1 text-sm leading-7 text-stone-600">
         {engagement.description}
       </p>
       <div className="mt-5 flex flex-col gap-2">
