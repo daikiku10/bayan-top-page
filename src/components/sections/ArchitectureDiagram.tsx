@@ -60,7 +60,10 @@ export default function ArchitectureDiagram({
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
 
   const diagram = (
-    <div ref={containerRef} className="relative">
+    <div
+      ref={containerRef}
+      className={`relative ${groups && groups.length > 0 ? "px-6 pt-10 pb-6" : ""}`}
+    >
       <svg
         className="pointer-events-none absolute left-0 top-0"
         width={canvasSize.width}
