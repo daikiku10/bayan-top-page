@@ -14,6 +14,22 @@ export const engagements: Engagement[] = [
       { label: "データベース", items: ["MongoDB"] },
       { label: "インフラ", items: ["GCP", "Cloudflare"] },
     ],
+    responsibilities: [
+      {
+        label: "",
+        items: [],
+      },
+    ],
+    challenges: [
+      {
+        label: "",
+        items: [],
+      },
+    ],
+    architecture: {
+      nodes: [],
+      edges: [],
+    },
   },
   {
     id: "3",
