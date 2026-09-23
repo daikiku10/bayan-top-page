@@ -36,8 +36,11 @@ export const engagements: Engagement[] = [
       },
     ],
     architecture: {
-      nodes: [],
-      edges: [],
+      nodes: [
+        { id: "client", label: "Client", column: 0 },
+        { id: "cloudflare", label: "Cloudflare", detail: "フロントエンド (React) デプロイ", column: 1 },
+      ],
+      edges: [{ from: "client", to: "cloudflare" }],
     },
   },
   {
