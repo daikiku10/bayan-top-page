@@ -40,8 +40,8 @@ export const engagements: Engagement[] = [
         { id: "client", label: "Client", column: 0 },
         { id: "cloudflare", label: "Web", detail: "React", column: 1 },
         { id: "core", label: "Core API", detail: "NestJS", column: 2 },
-        { id: "mongodb", label: "MongoDB", detail: "GCP", column: 3, row: 0 },
-        { id: "redis", label: "Redis", detail: "GCP", column: 3, row: 1 },
+        { id: "mongodb", label: "MongoDB", column: 3, row: 0 },
+        { id: "redis", label: "Redis", column: 3, row: 1 },
       ],
       edges: [
         { from: "client", to: "cloudflare" },
