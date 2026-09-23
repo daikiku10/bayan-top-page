@@ -99,6 +99,7 @@ export default async function EngagementDetailPage({
               nodes={engagement.architecture.nodes}
               edges={engagement.architecture.edges}
               container={engagement.architecture.container}
+              groups={engagement.architecture.groups}
             />
           </section>
         )}

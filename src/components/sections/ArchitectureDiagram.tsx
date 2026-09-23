@@ -1,18 +1,24 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { ArchitectureEdge, ArchitectureNode } from "@/types";
+import type { ArchitectureEdge, ArchitectureGroup, ArchitectureNode } from "@/types";
 
 type Rect = { x: number; y: number; width: number; height: number };
+
+const GROUP_PADDING_X = 20;
+const GROUP_PADDING_TOP = 28;
+const GROUP_PADDING_BOTTOM = 16;
 
 export default function ArchitectureDiagram({
   nodes,
   edges,
   container,
+  groups,
 }: {
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
   container?: string;
+  groups?: ArchitectureGroup[];
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef(new Map<string, HTMLDivElement>());
@@ -106,6 +112,39 @@ export default function ArchitectureDiagram({
           );
         })}
       </svg>
+
+      {groups?.map((group) => {
+        const groupRects = group.nodeIds
+          .map((id) => rects[id])
+          .filter((r): r is Rect => Boolean(r));
+        if (groupRects.length === 0) return null;
+
+        const left = Math.min(...groupRects.map((r) => r.x)) - GROUP_PADDING_X;
+        const top =
+          Math.min(...groupRects.map((r) => r.y)) - GROUP_PADDING_TOP;
+        const right =
+          Math.max(...groupRects.map((r) => r.x + r.width)) + GROUP_PADDING_X;
+        const bottom =
+          Math.max(...groupRects.map((r) => r.y + r.height)) +
+          GROUP_PADDING_BOTTOM;
+
+        return (
+          <div
+            key={group.label}
+            className="absolute rounded-2xl border border-dashed border-stone-300"
+            style={{
+              left,
+              top,
+              width: right - left,
+              height: bottom - top,
+            }}
+          >
+            <span className="absolute -top-3 left-4 rounded-full bg-[var(--background)] px-2.5 py-0.5 text-xs font-medium text-stone-500">
+              {group.label}
+            </span>
+          </div>
+        );
+      })}
 
       <div
         className="grid gap-x-10 gap-y-6"

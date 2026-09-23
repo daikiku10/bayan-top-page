@@ -49,6 +49,10 @@ export const engagements: Engagement[] = [
         { from: "core", to: "mongodb" },
         { from: "core", to: "redis" },
       ],
+      groups: [
+        { label: "Cloudflare", nodeIds: ["cloudflare"] },
+        { label: "GCP", nodeIds: ["core", "mongodb", "redis"] },
+      ],
     },
   },
   {
