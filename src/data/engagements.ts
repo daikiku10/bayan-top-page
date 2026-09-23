@@ -10,7 +10,7 @@ export const engagements: Engagement[] = [
       "企業の情報システム部門向けに、SaaS利用状況の可視化とアカウント管理業務の効率化を実現するSaaS管理プロダクトの新機能開発プロジェクト。社内で利用されるSaaSツールの増加に伴うアカウント管理やシャドーIT（未把握のツール使用）によるセキュリティリスク対応の負荷増大という課題を背景に、営業担当が顧客ヒアリングを通じて収集した要望をもとに機能仕様を検討・設計し、新機能の実装を行う。",
     tags: [
       { label: "フロントエンド", items: ["TypeScript", "React"] },
-      { label: "バックエンド", items: ["TypeScript", "NestJS"] },
+      { label: "バックエンド", items: ["TypeScript", "NestJS", "GraphQL"] },
       { label: "データベース", items: ["MongoDB"] },
       { label: "インフラ", items: ["GCP", "Cloudflare"] },
     ],
