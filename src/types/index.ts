@@ -29,9 +29,18 @@ export type ArchitectureEdge = {
   to: string;
 };
 
+export type ArchitectureGroup = {
+  /** Label for the frame surrounding this group's nodes (e.g. hosting environment). */
+  label: string;
+  /** IDs of the nodes this frame should enclose. */
+  nodeIds: string[];
+};
+
 export type Architecture = {
   /** Label for the frame surrounding the whole diagram (e.g. hosting environment). */
   container?: string;
+  /** Multiple frames, each enclosing a subset of nodes (e.g. separate hosting environments). */
+  groups?: ArchitectureGroup[];
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
 };
