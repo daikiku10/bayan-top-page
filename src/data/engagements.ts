@@ -27,7 +27,9 @@ export const engagements: Engagement[] = [
     challenges: [
       {
         label: "",
-        items: [],
+        items: [
+          "顧客要望が必ずしも正しいとは限らない点。要望を鵜呑みにしてしまうと的外れな実装になってしまうこともあるため、なぜ顧客がその要望を出しているのか、真の目的は何かを理解することが大事だと学んだ",
+        ],
       },
     ],
     architecture: {
