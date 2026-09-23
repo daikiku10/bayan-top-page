@@ -12,7 +12,7 @@ export const engagements: Engagement[] = [
       { label: "フロントエンド", items: ["TypeScript", "React"] },
       { label: "バックエンド", items: ["TypeScript", "NestJS"] },
       { label: "データベース", items: ["MongoDB"] },
-      { label: "インフラ", items: ["Cloudflare", "GCP"] },
+      { label: "インフラ", items: ["GCP", "Cloudflare"] },
     ],
   },
   {
