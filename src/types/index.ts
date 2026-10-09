@@ -59,6 +59,7 @@ export type Engagement = {
   tags: TagGroup[];
   responsibilities?: TagGroup[];
   challenges?: TagGroup[];
+  aiPractices?: TagGroup[];
   architecture?: Architecture;
 };
 

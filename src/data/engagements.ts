@@ -35,6 +35,13 @@ export const engagements: Engagement[] = [
         ],
       },
     ],
+    aiPractices: [
+      { label: "要件・設計段階", items: [] },
+      { label: "外部設計", items: [] },
+      { label: "詳細設計", items: [] },
+      { label: "実装・テスト", items: [] },
+      { label: "レビュー", items: [] },
+    ],
     architecture: {
       nodes: [
         { id: "client", label: "Client", column: 0 },

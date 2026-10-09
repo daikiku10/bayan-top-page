@@ -152,6 +152,30 @@ export default async function EngagementDetailPage({
           </section>
         )}
 
+        {engagement.aiPractices && (
+          <section className="mb-10">
+            <h2 className="mb-4 text-lg font-semibold text-stone-900">
+              AI駆動開発の実践経験
+            </h2>
+            <div className="flex flex-col gap-5">
+              {engagement.aiPractices.map((group) => (
+                <div key={group.label}>
+                  <h3 className="mb-2 text-sm font-medium text-stone-700">
+                    {group.label}
+                  </h3>
+                  {group.items.length > 0 && (
+                    <ul className="list-disc space-y-1 pl-5 text-sm leading-7 text-stone-600">
+                      {group.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
       </div>
     </main>
   );
