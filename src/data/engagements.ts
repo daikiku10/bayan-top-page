@@ -62,7 +62,12 @@ export const engagements: Engagement[] = [
           "いずれの場合もAIの指摘はそのまま反映せず、対応が必要かを人が判断し、必要に応じて議論したうえで修正している",
         ],
       },
-      { label: "リリース", items: [] },
+      {
+        label: "リリース",
+        items: [
+          "リリース作業はリーダーが担当しており、リリースノートの作成には自作したSkillを使用している",
+        ],
+      },
     ],
     architecture: {
       nodes: [
