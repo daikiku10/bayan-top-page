@@ -13,6 +13,7 @@ export const engagements: Engagement[] = [
       { label: "バックエンド", items: ["TypeScript", "NestJS", "GraphQL"] },
       { label: "データベース", items: ["MongoDB"] },
       { label: "インフラ", items: ["GCP", "Cloudflare"] },
+      { label: "AI", items: ["Claude Code"] },
     ],
     responsibilities: [
       {
