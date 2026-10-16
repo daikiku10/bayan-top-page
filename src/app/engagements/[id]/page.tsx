@@ -155,7 +155,7 @@ export default async function EngagementDetailPage({
         {engagement.aiPractices && (
           <section className="mb-10">
             <h2 className="mb-4 text-lg font-semibold text-stone-900">
-              AI駆動開発の実践経験
+              AI活用について
             </h2>
             <div className="flex flex-col gap-5">
               {engagement.aiPractices.map((group) => (
