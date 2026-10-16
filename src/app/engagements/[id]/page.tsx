@@ -74,7 +74,10 @@ export default async function EngagementDetailPage({
 
         <div className="mb-10 flex flex-col gap-2">
           {engagement.tags.map((group) => (
-            <div key={group.label} className="flex flex-wrap items-center gap-2">
+            <div
+              key={group.label}
+              className="flex flex-wrap items-center gap-2"
+            >
               <span className="text-xs font-medium text-stone-400">
                 {group.label}
               </span>
@@ -155,7 +158,7 @@ export default async function EngagementDetailPage({
         {engagement.aiPractices && (
           <section className="mb-10">
             <h2 className="mb-4 text-lg font-semibold text-stone-900">
-              AI駆動開発の実践経験
+              AI活用について
             </h2>
             <div className="flex flex-col gap-5">
               {engagement.aiPractices.map((group) => (
@@ -175,7 +178,6 @@ export default async function EngagementDetailPage({
             </div>
           </section>
         )}
-
       </div>
     </main>
   );
