@@ -59,6 +59,25 @@ export default function ArchitectureDiagram({
   const rowCount = Math.max(...nodes.map((n) => n.row ?? 0)) + 1;
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
 
+  // Rects of every node in the given row, so labels can avoid the row's frames.
+  const rowRects = (row: number) =>
+    nodes
+      .filter((n) => (n.row ?? 0) === row)
+      .map((n) => rects[n.id])
+      .filter((r): r is Rect => Boolean(r));
+
+  // Centre a vertical edge's label in the space between the two rows' frames.
+  const verticalLabelY = (edge: ArchitectureEdge) => {
+    const above = rowRects(nodeById.get(edge.from)?.row ?? 0);
+    const below = rowRects(nodeById.get(edge.to)?.row ?? 0);
+    const rowBottom = Math.max(...above.map((r) => r.y + r.height));
+    const rowTop = Math.min(...below.map((r) => r.y));
+    const inset = groups && groups.length > 0;
+    const top = rowBottom + (inset ? GROUP_PADDING_BOTTOM : 0);
+    const bottom = rowTop - (inset ? GROUP_PADDING_TOP : 0);
+    return (top + bottom) / 2;
+  };
+
   const diagram = (
     <div
       ref={containerRef}
@@ -99,19 +118,35 @@ export default function ArchitectureDiagram({
 
           const midX = (start.x + end.x) / 2;
           const midY = (start.y + end.y) / 2;
+          const labelY = sameColumn ? verticalLabelY(edge) : midY;
           const path = sameColumn
             ? `M ${start.x} ${start.y} C ${start.x} ${midY}, ${end.x} ${midY}, ${end.x} ${end.y}`
             : `M ${start.x} ${start.y} C ${midX} ${start.y}, ${midX} ${end.y}, ${end.x} ${end.y}`;
 
           return (
-            <path
-              key={`${edge.from}-${edge.to}`}
-              d={path}
-              fill="none"
-              className="stroke-stone-300"
-              strokeWidth={1.5}
-              markerEnd="url(#architecture-arrowhead)"
-            />
+            <g key={`${edge.from}-${edge.to}`}>
+              <path
+                d={path}
+                fill="none"
+                className="stroke-stone-300"
+                strokeWidth={1.5}
+                markerEnd="url(#architecture-arrowhead)"
+              />
+              {edge.label && (
+                <text
+                  x={midX}
+                  y={labelY}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  stroke="var(--background)"
+                  strokeWidth={6}
+                  paintOrder="stroke"
+                  className="fill-stone-500 text-[11px]"
+                >
+                  {edge.label}
+                </text>
+              )}
+            </g>
           );
         })}
       </svg>
@@ -122,14 +157,21 @@ export default function ArchitectureDiagram({
           .filter((r): r is Rect => Boolean(r));
         if (groupRects.length === 0) return null;
 
-        const allRects = Object.values(rects);
+        // Span every node in the group's rows so frames side by side line up.
+        const groupRows = new Set(
+          group.nodeIds.map((id) => nodeById.get(id)?.row ?? 0),
+        );
+        const rowRects = nodes
+          .filter((n) => groupRows.has(n.row ?? 0))
+          .map((n) => rects[n.id])
+          .filter((r): r is Rect => Boolean(r));
+
         const left = Math.min(...groupRects.map((r) => r.x)) - GROUP_PADDING_X;
-        const top =
-          Math.min(...allRects.map((r) => r.y)) - GROUP_PADDING_TOP;
+        const top = Math.min(...rowRects.map((r) => r.y)) - GROUP_PADDING_TOP;
         const right =
           Math.max(...groupRects.map((r) => r.x + r.width)) + GROUP_PADDING_X;
         const bottom =
-          Math.max(...allRects.map((r) => r.y + r.height)) +
+          Math.max(...rowRects.map((r) => r.y + r.height)) +
           GROUP_PADDING_BOTTOM;
 
         return (
@@ -151,7 +193,7 @@ export default function ArchitectureDiagram({
       })}
 
       <div
-        className="grid gap-x-10 gap-y-6"
+        className={`grid gap-x-10 ${groups && groups.length > 0 ? "gap-y-20" : "gap-y-6"}`}
         style={{
           gridTemplateColumns: `repeat(${columnCount}, minmax(140px, 1fr))`,
           gridTemplateRows: `repeat(${rowCount}, auto)`,
@@ -174,7 +216,7 @@ export default function ArchitectureDiagram({
               {node.label}
             </p>
             {node.detail && (
-              <p className="mt-1 text-xs text-stone-500">{node.detail}</p>
+              <p className="mt-1 whitespace-pre-line text-xs text-stone-500">{node.detail}</p>
             )}
           </div>
         ))}
