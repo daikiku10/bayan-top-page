@@ -59,6 +59,25 @@ export default function ArchitectureDiagram({
   const rowCount = Math.max(...nodes.map((n) => n.row ?? 0)) + 1;
   const nodeById = new Map(nodes.map((n) => [n.id, n]));
 
+  // Rects of every node in the given row, so labels can avoid the row's frames.
+  const rowRects = (row: number) =>
+    nodes
+      .filter((n) => (n.row ?? 0) === row)
+      .map((n) => rects[n.id])
+      .filter((r): r is Rect => Boolean(r));
+
+  // Centre a vertical edge's label in the space between the two rows' frames.
+  const verticalLabelY = (edge: ArchitectureEdge) => {
+    const above = rowRects(nodeById.get(edge.from)?.row ?? 0);
+    const below = rowRects(nodeById.get(edge.to)?.row ?? 0);
+    const rowBottom = Math.max(...above.map((r) => r.y + r.height));
+    const rowTop = Math.min(...below.map((r) => r.y));
+    const inset = groups && groups.length > 0;
+    const top = rowBottom + (inset ? GROUP_PADDING_BOTTOM : 0);
+    const bottom = rowTop - (inset ? GROUP_PADDING_TOP : 0);
+    return (top + bottom) / 2;
+  };
+
   const diagram = (
     <div
       ref={containerRef}
@@ -99,6 +118,7 @@ export default function ArchitectureDiagram({
 
           const midX = (start.x + end.x) / 2;
           const midY = (start.y + end.y) / 2;
+          const labelY = sameColumn ? verticalLabelY(edge) : midY;
           const path = sameColumn
             ? `M ${start.x} ${start.y} C ${start.x} ${midY}, ${end.x} ${midY}, ${end.x} ${end.y}`
             : `M ${start.x} ${start.y} C ${midX} ${start.y}, ${midX} ${end.y}, ${end.x} ${end.y}`;
@@ -115,7 +135,7 @@ export default function ArchitectureDiagram({
               {edge.label && (
                 <text
                   x={midX}
-                  y={midY}
+                  y={labelY}
                   textAnchor="middle"
                   dominantBaseline="middle"
                   stroke="var(--background)"
