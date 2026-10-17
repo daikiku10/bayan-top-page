@@ -96,7 +96,7 @@ export default async function EngagementDetailPage({
         {engagement.architecture && (
           <section className="mb-10">
             <h2 className="mb-4 text-lg font-semibold text-stone-900">
-              アーキテクチャ構成
+              システム構成
             </h2>
             <ArchitectureDiagram
               nodes={engagement.architecture.nodes}
