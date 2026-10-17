@@ -137,13 +137,21 @@ export default function ArchitectureDiagram({
           .filter((r): r is Rect => Boolean(r));
         if (groupRects.length === 0) return null;
 
+        // Span every node in the group's rows so frames side by side line up.
+        const groupRows = new Set(
+          group.nodeIds.map((id) => nodeById.get(id)?.row ?? 0),
+        );
+        const rowRects = nodes
+          .filter((n) => groupRows.has(n.row ?? 0))
+          .map((n) => rects[n.id])
+          .filter((r): r is Rect => Boolean(r));
+
         const left = Math.min(...groupRects.map((r) => r.x)) - GROUP_PADDING_X;
-        const top =
-          Math.min(...groupRects.map((r) => r.y)) - GROUP_PADDING_TOP;
+        const top = Math.min(...rowRects.map((r) => r.y)) - GROUP_PADDING_TOP;
         const right =
           Math.max(...groupRects.map((r) => r.x + r.width)) + GROUP_PADDING_X;
         const bottom =
-          Math.max(...groupRects.map((r) => r.y + r.height)) +
+          Math.max(...rowRects.map((r) => r.y + r.height)) +
           GROUP_PADDING_BOTTOM;
 
         return (
