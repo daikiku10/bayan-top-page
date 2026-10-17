@@ -27,6 +27,8 @@ export type ArchitectureNode = {
 export type ArchitectureEdge = {
   from: string;
   to: string;
+  /** Short text shown beside the line (e.g. how the two nodes are linked). */
+  label?: string;
 };
 
 export type ArchitectureGroup = {

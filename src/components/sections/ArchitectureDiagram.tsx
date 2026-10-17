@@ -111,14 +111,29 @@ export default function ArchitectureDiagram({
             : `M ${start.x} ${start.y} C ${midX} ${start.y}, ${midX} ${end.y}, ${end.x} ${end.y}`;
 
           return (
-            <path
-              key={`${edge.from}-${edge.to}`}
-              d={path}
-              fill="none"
-              className="stroke-stone-300"
-              strokeWidth={1.5}
-              markerEnd="url(#architecture-arrowhead)"
-            />
+            <g key={`${edge.from}-${edge.to}`}>
+              <path
+                d={path}
+                fill="none"
+                className="stroke-stone-300"
+                strokeWidth={1.5}
+                markerEnd="url(#architecture-arrowhead)"
+              />
+              {edge.label && (
+                <text
+                  x={midX}
+                  y={midY}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  stroke="var(--background)"
+                  strokeWidth={6}
+                  paintOrder="stroke"
+                  className="fill-stone-500 text-[11px]"
+                >
+                  {edge.label}
+                </text>
+              )}
+            </g>
           );
         })}
         {merges?.map((merge) => {
