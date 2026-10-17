@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type {
-  ArchitectureEdge,
-  ArchitectureGroup,
-  ArchitectureMerge,
-  ArchitectureNode,
-} from "@/types";
+import type { ArchitectureEdge, ArchitectureGroup, ArchitectureNode } from "@/types";
 
 type Rect = { x: number; y: number; width: number; height: number };
 
@@ -17,13 +12,11 @@ const GROUP_PADDING_BOTTOM = 16;
 export default function ArchitectureDiagram({
   nodes,
   edges,
-  merges,
   container,
   groups,
 }: {
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
-  merges?: ArchitectureMerge[];
   container?: string;
   groups?: ArchitectureGroup[];
 }) {
@@ -133,41 +126,6 @@ export default function ArchitectureDiagram({
                   {edge.label}
                 </text>
               )}
-            </g>
-          );
-        })}
-        {merges?.map((merge) => {
-          const sources = merge.from
-            .map((id) => rects[id])
-            .filter((r): r is Rect => Boolean(r));
-          const targets = merge.to
-            .map((id) => rects[id])
-            .filter((r): r is Rect => Boolean(r));
-          if (sources.length === 0 || targets.length === 0) return null;
-
-          const centerY = (r: Rect) => r.y + r.height / 2;
-          const sourceRight = Math.max(...sources.map((r) => r.x + r.width));
-          const targetLeft = Math.min(...targets.map((r) => r.x));
-          const busX = (sourceRight + targetLeft) / 2;
-          const ys = [...sources, ...targets].map(centerY);
-          const key = `${merge.from.join("+")}-${merge.to.join("+")}`;
-
-          return (
-            <g key={key} fill="none" className="stroke-stone-300" strokeWidth={1.5}>
-              {sources.map((r, i) => (
-                <path
-                  key={`in-${merge.from[i]}`}
-                  d={`M ${r.x + r.width} ${centerY(r)} H ${busX}`}
-                />
-              ))}
-              <path d={`M ${busX} ${Math.min(...ys)} V ${Math.max(...ys)}`} />
-              {targets.map((r, i) => (
-                <path
-                  key={`out-${merge.to[i]}`}
-                  d={`M ${busX} ${centerY(r)} H ${r.x}`}
-                  markerEnd="url(#architecture-arrowhead)"
-                />
-              ))}
             </g>
           );
         })}

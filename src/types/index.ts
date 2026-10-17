@@ -38,13 +38,6 @@ export type ArchitectureGroup = {
   nodeIds: string[];
 };
 
-export type ArchitectureMerge = {
-  /** Nodes whose lines join at a single point. */
-  from: string[];
-  /** Nodes the joined line branches out to. */
-  to: string[];
-};
-
 export type Architecture = {
   /** Label for the frame surrounding the whole diagram (e.g. hosting environment). */
   container?: string;
@@ -52,8 +45,6 @@ export type Architecture = {
   groups?: ArchitectureGroup[];
   nodes: ArchitectureNode[];
   edges: ArchitectureEdge[];
-  /** Lines from several nodes that join before branching to several targets. */
-  merges?: ArchitectureMerge[];
 };
 
 export type TagGroup = {

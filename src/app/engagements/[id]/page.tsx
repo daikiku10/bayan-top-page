@@ -101,7 +101,6 @@ export default async function EngagementDetailPage({
             <ArchitectureDiagram
               nodes={engagement.architecture.nodes}
               edges={engagement.architecture.edges}
-              merges={engagement.architecture.merges}
               container={engagement.architecture.container}
               groups={engagement.architecture.groups}
             />
