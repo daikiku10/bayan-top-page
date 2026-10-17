@@ -78,7 +78,8 @@ export const engagements: Engagement[] = [
         { id: "usage", label: "Usage API", detail: "NestJS\n1vCPU・512MB\n1〜4台", column: 2, row: 1 },
         { id: "cube", label: "Cube API", column: 2, row: 2 },
         { id: "mongodb", label: "MongoDB", detail: "Atlas M30", column: 3, row: 0 },
-        { id: "redis", label: "Redis", column: 3, row: 1 },
+        { id: "postgresql", label: "PostgreSQL", column: 3, row: 1 },
+        { id: "redis", label: "Redis", column: 3, row: 2 },
       ],
       edges: [
         { from: "client", to: "cloudflare" },
@@ -89,7 +90,7 @@ export const engagements: Engagement[] = [
       merges: [{ from: ["core", "usage"], to: ["mongodb", "redis"] }],
       groups: [
         { label: "Cloudflare", nodeIds: ["cloudflare"] },
-        { label: "GCP", nodeIds: ["core", "usage", "cube", "mongodb", "redis"] },
+        { label: "GCP", nodeIds: ["core", "usage", "cube", "mongodb", "postgresql", "redis"] },
       ],
     },
   },
