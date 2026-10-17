@@ -96,6 +96,8 @@ export const engagements: Engagement[] = [
         { label: "GCP", nodeIds: ["core", "usage"] },
         { label: "Cube Cloud", nodeIds: ["cube"] },
         { label: "MongoDB Atlas", nodeIds: ["mongodb"] },
+        { label: "Supabase", nodeIds: ["postgresql"] },
+        { label: "Aiven", nodeIds: ["redis"] },
       ],
     },
   },
