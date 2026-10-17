@@ -87,6 +87,7 @@ export const engagements: Engagement[] = [
         { from: "client", to: "extension" },
         { from: "extension", to: "usage" },
         { from: "mongodb", to: "postgresql", label: "CDC（Estuary Flow）" },
+        { from: "cloudflare", to: "cube" },
         { from: "cube", to: "postgresql" },
       ],
       merges: [{ from: ["core", "usage"], to: ["mongodb", "redis"] }],
