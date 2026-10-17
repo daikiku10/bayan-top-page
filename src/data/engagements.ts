@@ -71,7 +71,8 @@ export const engagements: Engagement[] = [
     ],
     architecture: {
       nodes: [
-        { id: "client", label: "Client", column: 0 },
+        { id: "client", label: "Client", column: 0, row: 0 },
+        { id: "extension", label: "ブラウザ拡張", column: 0, row: 1 },
         { id: "cloudflare", label: "Web", detail: "React", column: 1 },
         { id: "core", label: "Core API", detail: "NestJS\n1vCPU・1GB\n2〜8台", column: 2, row: 0 },
         { id: "usage", label: "Usage API", detail: "NestJS\n1vCPU・512MB\n1〜4台", column: 2, row: 1 },
@@ -83,7 +84,8 @@ export const engagements: Engagement[] = [
         { from: "cloudflare", to: "core" },
         { from: "core", to: "mongodb" },
         { from: "core", to: "redis" },
-        { from: "cloudflare", to: "usage" },
+        { from: "client", to: "extension" },
+        { from: "extension", to: "usage" },
         { from: "usage", to: "mongodb" },
         { from: "usage", to: "redis" },
       ],
