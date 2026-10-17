@@ -79,7 +79,7 @@ export const engagements: Engagement[] = [
         { id: "cube", label: "Cube API", column: 2, row: 2 },
         { id: "mongodb", label: "MongoDB", detail: "M30", column: 3, row: 1 },
         { id: "postgresql", label: "PostgreSQL", column: 3, row: 2 },
-        { id: "redis", label: "Redis", column: 3, row: 0 },
+        { id: "redis", label: "Redis", detail: "Hobbyist", column: 3, row: 0 },
       ],
       edges: [
         { from: "client", to: "cloudflare" },
