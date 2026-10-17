@@ -82,13 +82,10 @@ export const engagements: Engagement[] = [
       edges: [
         { from: "client", to: "cloudflare" },
         { from: "cloudflare", to: "core" },
-        { from: "core", to: "mongodb" },
-        { from: "core", to: "redis" },
         { from: "client", to: "extension" },
         { from: "extension", to: "usage" },
-        { from: "usage", to: "mongodb" },
-        { from: "usage", to: "redis" },
       ],
+      merges: [{ from: ["core", "usage"], to: ["mongodb", "redis"] }],
       groups: [
         { label: "Cloudflare", nodeIds: ["cloudflare"] },
         { label: "GCP", nodeIds: ["core", "usage", "mongodb", "redis"] },
