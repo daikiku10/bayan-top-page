@@ -179,14 +179,13 @@ export default function ArchitectureDiagram({
           .filter((r): r is Rect => Boolean(r));
         if (groupRects.length === 0) return null;
 
-        const allRects = Object.values(rects);
         const left = Math.min(...groupRects.map((r) => r.x)) - GROUP_PADDING_X;
         const top =
-          Math.min(...allRects.map((r) => r.y)) - GROUP_PADDING_TOP;
+          Math.min(...groupRects.map((r) => r.y)) - GROUP_PADDING_TOP;
         const right =
           Math.max(...groupRects.map((r) => r.x + r.width)) + GROUP_PADDING_X;
         const bottom =
-          Math.max(...allRects.map((r) => r.y + r.height)) +
+          Math.max(...groupRects.map((r) => r.y + r.height)) +
           GROUP_PADDING_BOTTOM;
 
         return (
@@ -208,7 +207,7 @@ export default function ArchitectureDiagram({
       })}
 
       <div
-        className="grid gap-x-10 gap-y-6"
+        className={`grid gap-x-10 ${groups && groups.length > 0 ? "gap-y-14" : "gap-y-6"}`}
         style={{
           gridTemplateColumns: `repeat(${columnCount}, minmax(140px, 1fr))`,
           gridTemplateRows: `repeat(${rowCount}, auto)`,
