@@ -174,7 +174,7 @@ export default function ArchitectureDiagram({
               {node.label}
             </p>
             {node.detail && (
-              <p className="mt-1 text-xs text-stone-500">{node.detail}</p>
+              <p className="mt-1 whitespace-pre-line text-xs text-stone-500">{node.detail}</p>
             )}
           </div>
         ))}
