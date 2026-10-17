@@ -73,7 +73,7 @@ export const engagements: Engagement[] = [
       nodes: [
         { id: "client", label: "Client", column: 0 },
         { id: "cloudflare", label: "Web", detail: "React", column: 1 },
-        { id: "core", label: "Core API", detail: "NestJS", column: 2 },
+        { id: "core", label: "Core API", detail: "NestJS（1vCPU・1GB × 2〜8台）", column: 2 },
         { id: "mongodb", label: "MongoDB", column: 3, row: 0 },
         { id: "redis", label: "Redis", column: 3, row: 1 },
       ],
