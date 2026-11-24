@@ -28,7 +28,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${inter.variable} ${notoSansJP.variable}`}>
+    <html
+      lang="ja"
+      className={`${inter.variable} ${notoSansJP.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body className="min-h-screen font-sans antialiased">{children}</body>
     </html>
   );
